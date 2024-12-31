@@ -3,14 +3,10 @@ import Botao from "@/components/Botao";
 import ListaProdutosCarrinho from "@/components/ListaProdutosCarrinho";
 import TotalCarrinho from "./TotalCarrinho";
 import Titulo from "@/components/Titulo";
+import { useCarrinhoContext } from "../hooks/useCarrinhoContext";
 
-const CarrinhoSuspenso = ({
-  carrinho,
-  adicionarProduto,
-  removerProduto,
-  removerProdutoCarrinho,
-  valorTotalCarrinho,
-}) => {
+const CarrinhoSuspenso = () => {
+  const { carrinho,valorTotal} = useCarrinhoContext();
   return (
     <div
       className="offcanvas offcanvas-end text-bg-dark"
@@ -26,6 +22,7 @@ const CarrinhoSuspenso = ({
         >
           Carrinho
         </Titulo>
+         {/* Botão de fecchar o carrinho suspenso */}
         <Botao
           variant="close"
           type="button"
@@ -34,13 +31,12 @@ const CarrinhoSuspenso = ({
         ></Botao>
       </div>
       <div className="offcanvas-body">
+        {/* Lista de produtos que aparece no  carrinho suspenso  */}
         <ListaProdutosCarrinho
           carrinho={carrinho}
-          adicionarProduto={adicionarProduto}
-          removerProduto={removerProduto}
-          removerProdutoCarrinho={removerProdutoCarrinho}
+         
         />
-        <TotalCarrinho valorTotalCarrinho={valorTotalCarrinho} />
+        <TotalCarrinho valorTotalCarrinho={valorTotal} />
       </div>
     </div>
   );
